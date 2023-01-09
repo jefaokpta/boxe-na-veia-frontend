@@ -8,7 +8,7 @@ const routes: Routes = [
       { path: '', loadChildren: () => import('./boxe/pages/home/home.module').then(m => m.HomeModule) },
     ]
   },
-  { path: 'login', loadChildren: () => import('./boxe/components/auth/auth.module').then(m => m.AuthModule) },
+  { path: 'auth', loadChildren: () => import('./boxe/components/auth/auth.module').then(m => m.AuthModule) },
 ];
 
 @NgModule({
