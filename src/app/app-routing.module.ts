@@ -5,7 +5,7 @@ import {AppLayoutComponent} from "./layout/app.layout.component";
 const routes: Routes = [
   { path: '', component: AppLayoutComponent,
     children: [
-      { path: '', loadChildren: () => import('./my-home/my-home.module').then(m => m.MyHomeModule) },
+      { path: '', loadChildren: () => import('./boxe/pages/home/home.module').then(m => m.HomeModule) },
     ]
   },
   { path: 'login', loadChildren: () => import('./boxe/components/auth/auth.module').then(m => m.AuthModule) },
