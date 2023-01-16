@@ -13,8 +13,8 @@ export class ServerService {
   getBoxers(){
     return this.http.get<Boxer[]>('http://localhost:8080/api/boxers')
       .pipe(
-        delay(3000),
-        map(boxers => boxers.filter(boxer => boxer.id < 4)),
+        delay(1000),
+        // map(boxers => boxers.filter(boxer => boxer.id < 4)),
         // tap(boxers => console.log(boxers))
       );
   }
