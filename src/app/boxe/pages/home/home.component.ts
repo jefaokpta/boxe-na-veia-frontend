@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
+import {ServerService} from "../../../service/server.service";
+import {Observable} from "rxjs";
 
 @Component({
   selector: 'app-home',
@@ -6,5 +8,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent {
+
+  boxers: Observable<any> = this.server.getBoxers();
+
+  constructor(private server: ServerService) { }
+
 
 }
