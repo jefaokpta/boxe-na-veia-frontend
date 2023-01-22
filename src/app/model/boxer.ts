@@ -5,4 +5,5 @@ export interface Boxer {
   age: number;
   weight: number;
   height: number;
+  reach: number;
 }

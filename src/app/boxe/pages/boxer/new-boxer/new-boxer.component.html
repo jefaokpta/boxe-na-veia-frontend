@@ -1,0 +1,47 @@
+<div class="grid">
+
+  <div class="col-12">
+    <div class="card">
+      <h1 style="margin-bottom: 24px" >Novo Lutador</h1>
+      <div class="p-fluid p-formgrid grid">
+        <div class="field col-10">
+          <span class="p-float-label">
+            <input id="name" type="text" pInputText>
+            <label for="name">Nome Completo</label>
+          </span>
+        </div>
+        <div class="field col-10">
+          <span class="p-float-label">
+            <input id="birthName" type="text" pInputText>
+            <label for="birthName">Nome de Batismo</label>
+          </span>
+        </div>
+          <div class="field col-3">
+            <span class="p-float-label">
+              <p-calendar id="birthday" dateFormat="dd/mm/yy" ></p-calendar>
+              <label for="birthday">Data de Nascimento</label>
+            </span>
+          </div>
+          <div class="field col-2">
+            <span class="p-float-label">
+              <p-inputNumber id="weight" [maxlength]="3" ></p-inputNumber>
+              <label for="weight">Peso</label>
+            </span>
+          </div>
+        <div class="field col-2">
+            <span class="p-float-label">
+              <p-inputNumber id="height" [minFractionDigits]="1" [maxFractionDigits]="2" [maxlength]="4" ></p-inputNumber>
+              <label for="height">Altura</label>
+            </span>
+        </div>
+        <div class="field col-2">
+            <span class="p-float-label">
+              <p-inputNumber id="reach" [minFractionDigits]="1" [maxFractionDigits]="2" [maxlength]="4" ></p-inputNumber>
+              <label for="reach">Alcance</label>
+            </span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
