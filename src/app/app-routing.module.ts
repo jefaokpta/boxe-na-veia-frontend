@@ -6,6 +6,8 @@ const routes: Routes = [
   { path: '', component: AppLayoutComponent,
     children: [
       { path: '', loadChildren: () => import('./boxe/pages/home/home.module').then(m => m.HomeModule) },
+      { path: 'boxers', loadChildren: () => import('./boxe/pages/boxer/boxer.module').then(m => m.BoxerModule) },
+
     ]
   },
   { path: 'auth', loadChildren: () => import('./boxe/components/auth/auth.module').then(m => m.AuthModule) },

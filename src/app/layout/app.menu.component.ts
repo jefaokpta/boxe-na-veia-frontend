@@ -1,5 +1,4 @@
-import { OnInit } from '@angular/core';
-import { Component } from '@angular/core';
+import {OnInit, Component} from '@angular/core';
 import { LayoutService } from './service/app.layout.service';
 
 @Component({
@@ -15,10 +14,12 @@ export class AppMenuComponent implements OnInit {
     ngOnInit() {
         this.model = [
             {
-                label: 'UI Components',
+                label: 'Cadastros',
                 items: [
-                    { label: 'Form Layout', icon: 'pi pi-fw pi-id-card', routerLink: ['/uikit/formlayout'] },
-                    { label: 'Input', icon: 'pi pi-fw pi-check-square', routerLink: ['/uikit/input'] },
+                    { label: 'Atletas', icon: 'pi pi-fw pi-users', routerLink: ['/boxers'] },
+                    { label: 'Eventos', icon: 'pi pi-fw pi-calendar-plus', routerLink: ['/boxers'] },
+                    { label: 'Parceiros', icon: 'pi pi-fw pi-dollar', routerLink: ['/boxers'] },
+                    { label: 'Usuários', icon: 'pi pi-fw pi-user-plus', routerLink: ['/boxers'] },
                 ]
             },
             {
