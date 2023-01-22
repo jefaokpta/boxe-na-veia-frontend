@@ -1,7 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import {ServerService} from "../../../service/server.service";
-import {finalize, Observable, take} from "rxjs";
-import {Boxer} from "../../../model/boxer";
 
 @Component({
   selector: 'app-home',
@@ -10,16 +7,9 @@ import {Boxer} from "../../../model/boxer";
 })
 export class HomeComponent implements OnInit {
 
-  boxers: Observable<any> | undefined;
-  loading = true;
-
-  constructor(private server: ServerService) { }
+  constructor() { }
 
   ngOnInit(): void {
-    this.boxers = this.server.getBoxers()
-      .pipe(
-        finalize(() => this.loading = false)
-      );
   }
 
 
