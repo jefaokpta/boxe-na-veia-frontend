@@ -7,6 +7,8 @@ import {TableModule} from "primeng/table";
 import {MultiSelectModule} from "primeng/multiselect";
 import {FormsModule} from "@angular/forms";
 import {ProgressBarModule} from "primeng/progressbar";
+import {InputTextModule} from "primeng/inputtext";
+import {ButtonModule} from "primeng/button";
 
 
 @NgModule({
@@ -19,7 +21,9 @@ import {ProgressBarModule} from "primeng/progressbar";
     TableModule,
     MultiSelectModule,
     FormsModule,
-    ProgressBarModule
+    ProgressBarModule,
+    InputTextModule,
+    ButtonModule
   ]
 })
 export class HomeModule { }
