@@ -14,6 +14,8 @@ export class NewBoxerComponent implements OnInit {
   selectedCountry: Country | undefined
   divisions: string[] = ['Leve', 'Médio', 'Meio Pesado', 'Pesado']
 
+  boxerImg: string | undefined
+
   constructor(private countryService: CountryService) { }
 
   ngOnInit(): void {
@@ -24,7 +26,12 @@ export class NewBoxerComponent implements OnInit {
     })
   }
 
-  onBasicUpload($event: any) {
-    console.log('CARREGOU: ', $event);
+  showBoxerImg($event: any) {
+    const file = $event.target.files[0]
+    const reader = new FileReader()
+    reader.readAsDataURL(file)
+    reader.onload = () => {
+      this.boxerImg = reader.result as string
+    }
   }
 }

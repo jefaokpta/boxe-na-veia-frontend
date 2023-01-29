@@ -22,8 +22,8 @@
       </div>
     </div>
     <div class="col-4">
-      <p-fileUpload mode="basic" name="demo[]" accept="image/*" [maxFileSize]="1000000"
-                    (change)="onBasicUpload($event)"></p-fileUpload>
+      <img [src]="boxerImg" alt="Foto do Lutador" height="64px" />
+      <input accept="image/*" type='file' (change)="showBoxerImg($event)" />
     </div>
     <div class="grid col-12">
       <div class="field col-8 lg:col-3">
