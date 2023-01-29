@@ -1,79 +1,84 @@
-<div class="grid">
-
-  <div class="col-12">
-    <div class="card">
-      <h1 style="margin-bottom: 24px">Novo Lutador</h1>
-      <div class="p-fluid p-formgrid grid">
-        <div class="field col-10">
+<div class="card">
+  <h1 style="margin-bottom: 24px">Novo Lutador</h1>
+  <div class="p-fluid grid">
+    <div class="grid col-8">
+      <div class="field col-12">
           <span class="p-float-label">
             <input id="name" type="text" pInputText>
             <label for="name">Nome</label>
           </span>
-        </div>
-        <div class="field col-10">
+      </div>
+      <div class="field col-12">
           <span class="p-float-label">
             <input id="alias" type="text" pInputText>
             <label for="name">Apelido</label>
           </span>
-        </div>
-        <div class="field col-10">
+      </div>
+      <div class="field col-12">
           <span class="p-float-label">
             <input id="birthName" type="text" pInputText>
             <label for="birthName">Nome de Batismo</label>
           </span>
-        </div>
-        <div class="field col-3">
+      </div>
+    </div>
+    <div class="col-4">
+      <p-fileUpload mode="basic" name="demo[]" accept="image/*" [maxFileSize]="1000000"
+                    (change)="onBasicUpload($event)"></p-fileUpload>
+    </div>
+    <div class="grid col-12">
+      <div class="field col-8 lg:col-3">
             <span class="p-float-label">
               <p-inputMask id="birthDate" mask="99/99/9999" slotChar="dd/mm/yyyy"></p-inputMask>
               <label for="birthDate">Data de Nascimento</label>
             </span>
-        </div>
-        <div class="field col-2">
+      </div>
+      <div class="field col-8 lg:col-3">
             <span class="p-float-label">
               <p-inputNumber id="weight" [maxlength]="3"></p-inputNumber>
               <label for="weight">Peso</label>
             </span>
-        </div>
-        <div class="field col-2">
+      </div>
+      <div class="field col-8 lg:col-3">
             <span class="p-float-label">
-              <p-inputNumber id="height" [minFractionDigits]="1" [maxFractionDigits]="2" [maxlength]="4"></p-inputNumber>
+              <p-inputNumber id="height" [minFractionDigits]="1" [maxFractionDigits]="2"
+                             [maxlength]="4"></p-inputNumber>
               <label for="height">Altura</label>
             </span>
-        </div>
-        <div class="field col-2">
+      </div>
+      <div class="field col-8 lg:col-3">
           <span class="p-float-label">
             <p-inputNumber id="reach" [minFractionDigits]="1" [maxFractionDigits]="2" [maxlength]="4"></p-inputNumber>
             <label for="reach">Alcance</label>
           </span>
-        </div>
-        <div class="col-3"></div>
-        <div class="field col-3">
+      </div>
+    </div>
+    <div class="field col-3">
           <span class="p-float-label">
-            <p-dropdown id="country" [options]="countries" [(ngModel)]="selectedCountry" optionLabel="name" [filter]="true" filterBy="name" >
+            <p-dropdown id="country" [options]="countries" [(ngModel)]="selectedCountry" optionLabel="name"
+                        [filter]="true" filterBy="name">
             <ng-template pTemplate="selectedItem">
               <div class="country-item country-item-value" *ngIf="selectedCountry">
-                <img src="assets/demo/images/flag/flag_placeholder.png" [class]="'flag flag-' + selectedCountry.code.toLocaleLowerCase()" />
+                <img src="assets/demo/images/flag/flag_placeholder.png"
+                     [class]="'flag flag-' + selectedCountry.code.toLocaleLowerCase()"/>
                 {{selectedCountry.name}}
               </div>
             </ng-template>
             <ng-template let-country pTemplate="item">
               <div class="country-item">
-                <img src="assets/demo/images/flag/flag_placeholder.png" [class]="'flag flag-' + country.code.toLowerCase()" />
+                <img src="assets/demo/images/flag/flag_placeholder.png"
+                     [class]="'flag flag-' + country.code.toLowerCase()"/>
                 {{country.name}}
               </div>
             </ng-template>
           </p-dropdown>
           <label for="country">País</label>
           </span>
-        </div>
-        <div class="field col-2">
+    </div>
+    <div class="field col-2">
           <span class="p-float-label">
             <p-dropdown id="division" [options]="divisions"></p-dropdown>
             <label for="division">Divisão</label>
           </span>
-        </div>
-      </div>
     </div>
   </div>
-
 </div>

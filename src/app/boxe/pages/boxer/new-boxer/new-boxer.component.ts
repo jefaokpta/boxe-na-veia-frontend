@@ -23,4 +23,8 @@ export class NewBoxerComponent implements OnInit {
       }
     })
   }
+
+  onBasicUpload($event: any) {
+    console.log('CARREGOU: ', $event);
+  }
 }

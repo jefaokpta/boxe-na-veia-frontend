@@ -11,6 +11,7 @@ import {InputNumberModule} from "primeng/inputnumber";
 import {InputMaskModule} from "primeng/inputmask";
 import {DropdownModule} from "primeng/dropdown";
 import {FormsModule} from "@angular/forms";
+import {FileUploadModule} from "primeng/fileupload";
 
 
 @NgModule({
@@ -27,7 +28,8 @@ import {FormsModule} from "@angular/forms";
     InputNumberModule,
     InputMaskModule,
     DropdownModule,
-    FormsModule
+    FormsModule,
+    FileUploadModule
   ]
 })
 export class BoxerModule { }
