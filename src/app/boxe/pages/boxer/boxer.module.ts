@@ -9,6 +9,8 @@ import {InputTextModule} from "primeng/inputtext";
 import { NewBoxerComponent } from './new-boxer/new-boxer.component';
 import {InputNumberModule} from "primeng/inputnumber";
 import {InputMaskModule} from "primeng/inputmask";
+import {DropdownModule} from "primeng/dropdown";
+import {FormsModule} from "@angular/forms";
 
 
 @NgModule({
@@ -23,7 +25,9 @@ import {InputMaskModule} from "primeng/inputmask";
     ButtonModule,
     InputTextModule,
     InputNumberModule,
-    InputMaskModule
+    InputMaskModule,
+    DropdownModule,
+    FormsModule
   ]
 })
 export class BoxerModule { }
