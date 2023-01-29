@@ -7,8 +7,8 @@ import {TableModule} from "primeng/table";
 import {ButtonModule} from "primeng/button";
 import {InputTextModule} from "primeng/inputtext";
 import { NewBoxerComponent } from './new-boxer/new-boxer.component';
-import {CalendarModule} from "primeng/calendar";
 import {InputNumberModule} from "primeng/inputnumber";
+import {InputMaskModule} from "primeng/inputmask";
 
 
 @NgModule({
@@ -22,8 +22,8 @@ import {InputNumberModule} from "primeng/inputnumber";
     TableModule,
     ButtonModule,
     InputTextModule,
-    CalendarModule,
-    InputNumberModule
+    InputNumberModule,
+    InputMaskModule
   ]
 })
 export class BoxerModule { }
