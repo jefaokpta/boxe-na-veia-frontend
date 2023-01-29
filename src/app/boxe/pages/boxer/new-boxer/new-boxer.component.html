@@ -7,7 +7,13 @@
         <div class="field col-10">
           <span class="p-float-label">
             <input id="name" type="text" pInputText>
-            <label for="name">Nome Completo</label>
+            <label for="name">Nome</label>
+          </span>
+        </div>
+        <div class="field col-10">
+          <span class="p-float-label">
+            <input id="alias" type="text" pInputText>
+            <label for="name">Apelido</label>
           </span>
         </div>
         <div class="field col-10">
@@ -42,7 +48,8 @@
         </div>
         <div class="col-3"></div>
         <div class="field col-3">
-          <p-dropdown [options]="countries" [(ngModel)]="selectedCountry" optionLabel="name" [filter]="true" filterBy="name" >
+          <span class="p-float-label">
+            <p-dropdown id="country" [options]="countries" [(ngModel)]="selectedCountry" optionLabel="name" [filter]="true" filterBy="name" >
             <ng-template pTemplate="selectedItem">
               <div class="country-item country-item-value" *ngIf="selectedCountry">
                 <img src="assets/demo/images/flag/flag_placeholder.png" [class]="'flag flag-' + selectedCountry.code.toLocaleLowerCase()" />
@@ -56,6 +63,14 @@
               </div>
             </ng-template>
           </p-dropdown>
+          <label for="country">País</label>
+          </span>
+        </div>
+        <div class="field col-2">
+          <span class="p-float-label">
+            <p-dropdown id="division" [options]="divisions"></p-dropdown>
+            <label for="division">Divisão</label>
+          </span>
         </div>
       </div>
     </div>

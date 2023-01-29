@@ -12,6 +12,7 @@ export class NewBoxerComponent implements OnInit {
 
   countries: Country[] = [];
   selectedCountry: Country | undefined
+  divisions: string[] = ['Leve', 'Médio', 'Meio Pesado', 'Pesado']
 
   constructor(private countryService: CountryService) { }
 
