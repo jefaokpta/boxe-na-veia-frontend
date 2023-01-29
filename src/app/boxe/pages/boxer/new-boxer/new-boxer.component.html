@@ -45,13 +45,13 @@
           <p-dropdown [options]="countries" [(ngModel)]="selectedCountry" optionLabel="name" [filter]="true" filterBy="name" >
             <ng-template pTemplate="selectedItem">
               <div class="country-item country-item-value" *ngIf="selectedCountry">
-                <img src="assets/demo/images/flag/flag_placeholder.png" [class]="'flag flag-' + selectedCountry.code" />
+                <img src="assets/demo/images/flag/flag_placeholder.png" [class]="'flag flag-' + selectedCountry.code.toLocaleLowerCase()" />
                 {{selectedCountry.name}}
               </div>
             </ng-template>
             <ng-template let-country pTemplate="item">
               <div class="country-item">
-                <img src="assets/demo/images/flag/flag_placeholder.png" [class]="'flag flag-' + country.code" />
+                <img src="assets/demo/images/flag/flag_placeholder.png" [class]="'flag flag-' + country.code.toLowerCase()" />
                 {{country.name}}
               </div>
             </ng-template>

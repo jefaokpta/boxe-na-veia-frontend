@@ -1,24 +1,25 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {Country} from "../../../../model/Country";
+import {CountryService} from "../../../../service/country.service";
 
-interface Country {
-  name: string;
-  code: string;
-}
 
 @Component({
   selector: 'app-new-boxer',
   templateUrl: './new-boxer.component.html',
   styleUrls: ['./new-boxer.component.scss']
 })
-export class NewBoxerComponent {
+export class NewBoxerComponent implements OnInit {
 
-  countries = [
-    {name: 'Brasil', code: 'br'},
-    {name: 'Estados Unidos', code: 'us'},
-    {name: 'Argentina', code: 'ar'},
-    {name: 'Colombia', code: 'co'},
-    {name: 'México', code: 'mx'},
-  ];
+  countries: Country[] = [];
   selectedCountry: Country | undefined
 
+  constructor(private countryService: CountryService) { }
+
+  ngOnInit(): void {
+    this.countryService.getCountries().subscribe({
+      next: (countries) => {
+        this.countries = countries
+      }
+    })
+  }
 }
