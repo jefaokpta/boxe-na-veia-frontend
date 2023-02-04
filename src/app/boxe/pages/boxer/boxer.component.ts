@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {catchError, finalize, Observable} from "rxjs";
-import {BoxerService} from "../../../service/boxer.service";
+import {BoxerService} from "./service/boxer.service";
 import {Boxer} from "../../../model/boxer";
 
 @Component({

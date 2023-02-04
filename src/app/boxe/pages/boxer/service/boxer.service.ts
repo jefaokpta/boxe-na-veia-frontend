@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {take} from "rxjs";
-import {Boxer} from "../model/boxer";
+import {Boxer} from "../../../../model/boxer";
 
 @Injectable({
   providedIn: 'root'
