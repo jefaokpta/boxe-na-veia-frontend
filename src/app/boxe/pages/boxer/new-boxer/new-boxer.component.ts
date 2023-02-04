@@ -50,12 +50,4 @@ export class NewBoxerComponent implements OnInit {
     this.image = null;
   }
 
-  showBoxerImg($event: any) {
-    const file = $event.target.files[0]
-    const reader = new FileReader()
-    reader.readAsDataURL(file)
-    reader.onload = () => {
-      this.boxerImg = reader.result as string
-    }
-  }
 }
