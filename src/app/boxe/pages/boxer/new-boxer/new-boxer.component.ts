@@ -3,6 +3,8 @@ import {Country} from "../../../../model/country";
 import {CountryService} from "../../../../service/country.service";
 import {FormControl, FormGroup, NonNullableFormBuilder, Validators} from "@angular/forms";
 import {MessageService} from "primeng/api";
+import {BoxerService} from "../service/boxer.service";
+import {Boxer} from "../../../../model/boxer";
 
 
 @Component({
@@ -18,26 +20,29 @@ export class NewBoxerComponent implements OnInit {
   countries: Country[] = [];
   selectedCountry: Country | undefined;
   divisions: string[] = ['Leve', 'Médio', 'Meio Pesado', 'Pesado']
-  formGroup: FormGroup
+  formGroup = this.formBuilder.group({
+    id: new FormControl(undefined),
+    image: new FormControl(undefined),
+    country: new FormControl('br'),
+    name: new FormControl('', [Validators.required]),
+    birthName: new FormControl('', [Validators.required]),
+    alias: new FormControl('', [Validators.required]),
+    birthDate: new FormControl('', [Validators.required]),
+    division: new FormControl('Leve', [Validators.required]),
+    weight: new FormControl(0, [Validators.required]),
+    height: new FormControl(0.0, [Validators.required]),
+    reach: new FormControl(0.0, [Validators.required]),
+    wins: new FormControl(0, [Validators.required]),
+    losses: new FormControl(0, [Validators.required]),
+    draws: new FormControl(0, [Validators.required]),
+    noContests: new FormControl(0, [Validators.required]),
+    kos: new FormControl(0, [Validators.required]),
+  })
   constructor(private countryService: CountryService,
               private formBuilder: NonNullableFormBuilder,
-              private messageService: MessageService) {
-    this.formGroup = this.formBuilder.group({
-      name: new FormControl('', [Validators.required]),
-      birthName: new FormControl('', [Validators.required]),
-      alias: new FormControl('', [Validators.required]),
-      birthDate: new FormControl('', [Validators.required]),
-      division: new FormControl('', [Validators.required]),
-      weight: new FormControl(0, [Validators.required]),
-      height: new FormControl(0.0, [Validators.required]),
-      reach: new FormControl(0.0, [Validators.required]),
-      wins: new FormControl(0, [Validators.required]),
-      losses: new FormControl(0, [Validators.required]),
-      draws: new FormControl(0, [Validators.required]),
-      noContests: new FormControl(0, [Validators.required]),
-      kos: new FormControl(0, [Validators.required]),
-    })
-  }
+              private messageService: MessageService,
+              private boxerService: BoxerService
+  ) {}
 
   ngOnInit(): void {
     this.countryService.getCountries().subscribe({
@@ -49,18 +54,35 @@ export class NewBoxerComponent implements OnInit {
   }
 
   onsubmit() {
-    this.markAllAsDirt()
+    // this.formGroup.value.country = this.selectedCountry!!.code.toLowerCase();
+    console.log(this.formGroup.value)
+    if (this.formGroup.valid) {
+      // this.boxerService.newBoxer(this.formGroup.value).subscribe({
+      //   next: (boxer) => {
+      //     this.messageService.add({severity: 'success', summary: 'Sucesso', detail: 'Boxeador cadastrado com sucesso.', life: 11000})
+      //     this.formGroup.reset();
+      //     this.image = null;
+      //     this.buttonEl.first.nativeElement.focus();
+      //   },
+      //   error: (err) => {
+      //     this.messageService.add({severity: 'error', summary: 'Erro', detail: 'Erro ao cadastrar boxeador.', life: 11000})
+      //   }
+      // })
+    } else {
+      this.markAllAsDirt()
+    }
   }
 
   markAllAsDirt() {
     // list all invalid fields
     Object.keys(this.formGroup.controls).forEach(field => {
       const control = this.formGroup.get(field);
+      console.log(control?.errors, field)
       if (control instanceof FormControl) {
         control.markAsDirty({ onlySelf: true });
       }
     })
-    this.messageService.add({severity: 'warn', summary: 'Atenção', detail: 'Preencha todos os campos obrigatórios', life: 102000})
+    this.messageService.add({severity: 'warn', summary: 'Atenção', detail: 'Preencha todos os campos destacados.', life: 11000})
   }
 
   onUpload(event: any) {
@@ -82,5 +104,6 @@ export class NewBoxerComponent implements OnInit {
 
   updateCountry($event: any) {
     this.selectedCountry = $event.value;
+    this.formGroup.value.country = this.selectedCountry!!.code.toLowerCase();
   }
 }

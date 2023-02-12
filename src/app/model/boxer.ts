@@ -1,5 +1,5 @@
 export interface Boxer {
-  id: number
+  id: number | undefined;
   name: string;
   birthName: string;
   alias: string;
