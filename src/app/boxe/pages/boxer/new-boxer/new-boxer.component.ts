@@ -1,7 +1,7 @@
 import {Component, ElementRef, OnInit, QueryList, ViewChildren} from '@angular/core';
 import {Country} from "../../../../model/country";
 import {CountryService} from "../../../../service/country.service";
-import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
+import {FormControl, FormGroup, NonNullableFormBuilder, Validators} from "@angular/forms";
 
 
 @Component({
@@ -18,11 +18,21 @@ export class NewBoxerComponent implements OnInit {
   selectedCountry: Country | undefined;
   divisions: string[] = ['Leve', 'Médio', 'Meio Pesado', 'Pesado']
   formGroup: FormGroup
-  constructor(private countryService: CountryService, private formBuilder: FormBuilder) {
+  constructor(private countryService: CountryService, private formBuilder: NonNullableFormBuilder) {
     this.formGroup = this.formBuilder.group({
-      name: new FormControl(null, [Validators.required]),
-      birthName: new FormControl(null, [Validators.required]),
-      alias: new FormControl(null, [Validators.required]),
+      name: new FormControl('', [Validators.required]),
+      birthName: new FormControl('', [Validators.required]),
+      alias: new FormControl('', [Validators.required]),
+      birthDate: new FormControl('', [Validators.required]),
+      division: new FormControl('', [Validators.required]),
+      weight: new FormControl(0, [Validators.required]),
+      height: new FormControl(0.0, [Validators.required]),
+      reach: new FormControl(0.0, [Validators.required]),
+      wins: new FormControl(0, [Validators.required]),
+      losses: new FormControl(0, [Validators.required]),
+      draws: new FormControl(0, [Validators.required]),
+      noContests: new FormControl(0, [Validators.required]),
+      kos: new FormControl(0, [Validators.required]),
     })
   }
 
@@ -36,11 +46,17 @@ export class NewBoxerComponent implements OnInit {
   }
 
   onsubmit() {
-
+    this.markAllAsDirt()
   }
-  isInvalidAndDirty(field: string) {
-    const control = this.formGroup.get(field);
-    return control!!.dirty && control!!.invalid;
+
+  markAllAsDirt() {
+    // list all invalid fields
+    Object.keys(this.formGroup.controls).forEach(field => {
+      const control = this.formGroup.get(field);
+      if (control instanceof FormControl) {
+        control.markAsDirty({ onlySelf: true });
+      }
+    })
   }
 
   onUpload(event: any) {

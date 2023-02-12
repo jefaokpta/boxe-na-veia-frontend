@@ -17,8 +17,8 @@
         </div>
         <div class="field col-12">
           <span class="p-float-label">
-            <input formControlName="alias" id="alias" type="text" [class.ng-invalid]="isInvalidAndDirty('alias')" pInputText>
-            <label for="name">Apelido</label>
+            <input formControlName="alias" id="alias" type="text" pInputText>
+            <label for="alias">Apelido</label>
           </span>
         </div>
       </div>
@@ -41,26 +41,26 @@
       <div class="grid col-12">
         <div class="field col-12 lg:col-3">
             <span class="p-float-label">
-              <p-inputMask id="birthDate" mask="99/99/9999" slotChar="dd/mm/yyyy"></p-inputMask>
+              <p-inputMask formControlName="birthDate" id="birthDate" mask="99/99/9999" slotChar="dd/mm/yyyy"></p-inputMask>
               <label for="birthDate">Data de Nascimento</label>
             </span>
         </div>
         <div class="field col-12 lg:col-3">
             <span class="p-float-label">
-              <p-inputNumber id="weight" [maxlength]="3"></p-inputNumber>
+              <p-inputNumber formControlName="weight" id="weight" [maxlength]="3"></p-inputNumber>
               <label for="weight">Peso</label>
             </span>
         </div>
         <div class="field col-12 lg:col-3">
             <span class="p-float-label">
-              <p-inputNumber id="height" [minFractionDigits]="1" [maxFractionDigits]="2"
+              <p-inputNumber formControlName="height" id="height" [minFractionDigits]="1" [maxFractionDigits]="2"
                              [maxlength]="4"></p-inputNumber>
               <label for="height">Altura</label>
             </span>
         </div>
         <div class="field col-12 lg:col-3">
           <span class="p-float-label">
-            <p-inputNumber id="reach" [minFractionDigits]="1" [maxFractionDigits]="2" [maxlength]="4"></p-inputNumber>
+            <p-inputNumber formControlName="reach" id="reach" [minFractionDigits]="1" [maxFractionDigits]="2" [maxlength]="4"></p-inputNumber>
             <label for="reach">Alcance</label>
           </span>
         </div>
@@ -98,31 +98,31 @@
         <h4 class="col-12">Cartel</h4>
         <div class="field col-12 lg:col-2">
             <span class="p-float-label">
-              <p-inputNumber id="wins" [maxlength]="3"></p-inputNumber>
+              <p-inputNumber formControlName="wins" id="wins" [maxlength]="3"></p-inputNumber>
               <label for="wins">Vitórias</label>
             </span>
         </div>
         <div class="field col-12 lg:col-2">
             <span class="p-float-label">
-              <p-inputNumber id="ko" [maxlength]="3"></p-inputNumber>
-              <label for="ko">Nocautes</label>
+              <p-inputNumber formControlName="kos" id="kos" [maxlength]="3"></p-inputNumber>
+              <label for="kos">Nocautes</label>
             </span>
         </div>
         <div class="field col-12 lg:col-2">
             <span class="p-float-label">
-              <p-inputNumber id="losses" [maxlength]="3"></p-inputNumber>
+              <p-inputNumber formControlName="losses" id="losses" [maxlength]="3"></p-inputNumber>
               <label for="losses">Derrotas</label>
             </span>
         </div>
         <div class="field col-12 lg:col-2">
             <span class="p-float-label">
-              <p-inputNumber id="draws" [maxlength]="3"></p-inputNumber>
+              <p-inputNumber formControlName="draws" id="draws" [maxlength]="3"></p-inputNumber>
               <label for="draws">Empates</label>
             </span>
         </div>
         <div class="field col-12 lg:col-2">
             <span class="p-float-label">
-              <p-inputNumber id="noContests" [maxlength]="3"></p-inputNumber>
+              <p-inputNumber formControlName="noContests" id="noContests" [maxlength]="3"></p-inputNumber>
               <label for="noContests">S/R</label>
             </span>
         </div>
