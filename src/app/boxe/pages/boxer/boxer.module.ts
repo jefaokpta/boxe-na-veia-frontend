@@ -13,6 +13,8 @@ import {DropdownModule} from "primeng/dropdown";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {FileUploadModule} from "primeng/fileupload";
 import {RippleModule} from "primeng/ripple";
+import {ToastModule} from "primeng/toast";
+import {MessageService} from "primeng/api";
 
 
 @NgModule({
@@ -32,7 +34,8 @@ import {RippleModule} from "primeng/ripple";
     FormsModule,
     FileUploadModule,
     RippleModule,
-    ReactiveFormsModule
-  ]
+    ReactiveFormsModule,
+    ToastModule
+  ], providers: [MessageService]
 })
 export class BoxerModule { }

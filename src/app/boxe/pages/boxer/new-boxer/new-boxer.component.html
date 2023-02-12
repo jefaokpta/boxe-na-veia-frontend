@@ -48,20 +48,20 @@
         <div class="field col-12 lg:col-3">
             <span class="p-float-label">
               <p-inputNumber formControlName="weight" id="weight" [maxlength]="3"></p-inputNumber>
-              <label for="weight">Peso</label>
+              <label for="weight">Peso (kg)</label>
             </span>
         </div>
         <div class="field col-12 lg:col-3">
             <span class="p-float-label">
               <p-inputNumber formControlName="height" id="height" [minFractionDigits]="1" [maxFractionDigits]="2"
                              [maxlength]="4"></p-inputNumber>
-              <label for="height">Altura</label>
+              <label for="height">Altura (m)</label>
             </span>
         </div>
         <div class="field col-12 lg:col-3">
           <span class="p-float-label">
             <p-inputNumber formControlName="reach" id="reach" [minFractionDigits]="1" [maxFractionDigits]="2" [maxlength]="4"></p-inputNumber>
-            <label for="reach">Alcance</label>
+            <label for="reach">Alcance (m)</label>
           </span>
         </div>
       </div>
@@ -132,3 +132,4 @@
       </div>
     </div>
   </form>
+  <p-toast></p-toast>

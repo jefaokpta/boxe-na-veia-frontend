@@ -2,6 +2,7 @@ import {Component, ElementRef, OnInit, QueryList, ViewChildren} from '@angular/c
 import {Country} from "../../../../model/country";
 import {CountryService} from "../../../../service/country.service";
 import {FormControl, FormGroup, NonNullableFormBuilder, Validators} from "@angular/forms";
+import {MessageService} from "primeng/api";
 
 
 @Component({
@@ -18,7 +19,9 @@ export class NewBoxerComponent implements OnInit {
   selectedCountry: Country | undefined;
   divisions: string[] = ['Leve', 'Médio', 'Meio Pesado', 'Pesado']
   formGroup: FormGroup
-  constructor(private countryService: CountryService, private formBuilder: NonNullableFormBuilder) {
+  constructor(private countryService: CountryService,
+              private formBuilder: NonNullableFormBuilder,
+              private messageService: MessageService) {
     this.formGroup = this.formBuilder.group({
       name: new FormControl('', [Validators.required]),
       birthName: new FormControl('', [Validators.required]),
@@ -57,6 +60,7 @@ export class NewBoxerComponent implements OnInit {
         control.markAsDirty({ onlySelf: true });
       }
     })
+    this.messageService.add({severity: 'warn', summary: 'Atenção', detail: 'Preencha todos os campos obrigatórios', life: 102000})
   }
 
   onUpload(event: any) {
