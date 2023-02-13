@@ -16,7 +16,7 @@ export class BoxerComponent implements OnInit{
   constructor(private server: BoxerService) { }
 
   ngOnInit(): void {
-    this.server.getBoxers().pipe(
+    this.server.list().pipe(
       finalize(() => this.loading = false),
     ).subscribe({
       next: (boxers) => {

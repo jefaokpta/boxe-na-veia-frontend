@@ -1,5 +1,5 @@
 export interface Boxer {
-  id: number | undefined;
+  id: number;
   name: string;
   birthName: string;
   alias: string;
@@ -13,5 +13,6 @@ export interface Boxer {
   losses: number;
   draws: number;
   noContests: number;
+  kos: number;
   image: string;
 }

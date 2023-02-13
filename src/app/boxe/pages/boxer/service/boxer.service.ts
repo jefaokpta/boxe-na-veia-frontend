@@ -12,13 +12,13 @@ export class BoxerService {
   private api = environment.api + '/boxers'
   constructor(private http: HttpClient) { }
 
-  getBoxers(){
+  list(){
     return this.http.get<Boxer[]>(this.api)
       .pipe(
         take(1)
       )
   }
-  newBoxer(boxer: Boxer){
+  new(boxer: Boxer){
     return this.http.post<Boxer>(this.api, boxer)
       .pipe(
         take(1)
