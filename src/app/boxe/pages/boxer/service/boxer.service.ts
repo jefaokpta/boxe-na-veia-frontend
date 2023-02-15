@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {take} from "rxjs";
+import {first} from "rxjs";
 import {Boxer} from "../../../../model/boxer";
 import {environment} from "../../../../../environments/environment";
 
@@ -15,13 +15,22 @@ export class BoxerService {
   list(){
     return this.http.get<Boxer[]>(this.api)
       .pipe(
-        take(1)
+        first()
       )
   }
   new(boxer: Boxer){
     return this.http.post<Boxer>(this.api, boxer)
       .pipe(
-        take(1)
+        first()
+      )
+  }
+  newImage(boxer: Boxer, image: File){
+    const formData = new FormData();
+    formData.append('file', image, image.name);
+    formData.append('boxer', JSON.stringify(boxer));
+    return this.http.post(`${this.api}/upload`, formData)
+      .pipe(
+        first()
       )
   }
 }

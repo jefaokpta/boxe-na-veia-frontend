@@ -20,6 +20,7 @@ export class NewBoxerComponent implements OnInit {
   selectedCountry: Country | undefined;
   divisions: string[] = ['Leve', 'Médio', 'Meio Pesado', 'Pesado']
   formGroup: FormGroup
+
   constructor(private countryService: CountryService,
               private formBuilder: NonNullableFormBuilder,
               private messageService: MessageService,
@@ -56,21 +57,24 @@ export class NewBoxerComponent implements OnInit {
 
   onsubmit() {
     console.log(this.formGroup.value)
-    if (this.formGroup.valid) {
-      this.boxerService.new(this.formGroup.value).subscribe({
-        next: (boxer) => {
-          this.messageService.add({severity: 'success', summary: 'Sucesso', detail: 'Boxeador cadastrado com sucesso.', life: 11000})
-          this.formGroup.reset();
-          this.image = null;
-          this.buttonEl.first.nativeElement.focus();
-        },
-        error: (err) => {
-          this.messageService.add({severity: 'error', summary: 'Erro', detail: 'Erro ao cadastrar boxeador.', life: 11000})
-        }
-      })
-    } else {
-      this.markAllAsDirt()
-    }
+    this.boxerService.newImage(this.formGroup.value, this.image).subscribe({
+      next: (boxer) => console.log('parece q foi')
+    })
+    // if (this.formGroup.valid) {
+    //   this.boxerService.new(this.formGroup.value).subscribe({
+    //     next: (boxer) => {
+    //       this.messageService.add({severity: 'success', summary: 'Sucesso', detail: 'Boxeador cadastrado com sucesso.', life: 11000})
+    //       this.formGroup.reset();
+    //       this.image = null;
+    //       this.buttonEl.first.nativeElement.focus();
+    //     },
+    //     error: (err) => {
+    //       this.messageService.add({severity: 'error', summary: 'Erro', detail: 'Erro ao cadastrar boxeador.', life: 11000})
+    //     }
+    //   })
+    // } else {
+    //   this.markAllAsDirt()
+    // }
   }
 
   markAllAsDirt() {
@@ -79,10 +83,15 @@ export class NewBoxerComponent implements OnInit {
       const control = this.formGroup.get(field);
       console.log(control?.errors, field)
       if (control instanceof FormControl) {
-        control.markAsDirty({ onlySelf: true });
+        control.markAsDirty({onlySelf: true});
       }
     })
-    this.messageService.add({severity: 'warn', summary: 'Atenção', detail: 'Preencha todos os campos destacados.', life: 11000})
+    this.messageService.add({
+      severity: 'warn',
+      summary: 'Atenção',
+      detail: 'Preencha todos os campos destacados.',
+      life: 11000
+    })
   }
 
   onUpload(event: any) {
@@ -91,8 +100,7 @@ export class NewBoxerComponent implements OnInit {
 
     if (!file.objectURL) {
       return;
-    }
-    else {
+    } else {
       this.image = file;
       this.objectURL = file.objectURL;
     }
