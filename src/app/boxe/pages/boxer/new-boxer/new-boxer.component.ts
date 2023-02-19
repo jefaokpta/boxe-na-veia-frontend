@@ -4,6 +4,7 @@ import {CountryService} from "../../../../service/country.service";
 import {FormControl, FormGroup, NonNullableFormBuilder, Validators} from "@angular/forms";
 import {MessageService} from "primeng/api";
 import {BoxerService} from "../service/boxer.service";
+import {Router} from "@angular/router";
 
 
 @Component({
@@ -24,7 +25,8 @@ export class NewBoxerComponent implements OnInit {
   constructor(private countryService: CountryService,
               private formBuilder: NonNullableFormBuilder,
               private messageService: MessageService,
-              private boxerService: BoxerService
+              private boxerService: BoxerService,
+              private router: Router
   ) {
     this.formGroup = this.formBuilder.group({
       id: new FormControl(undefined),
@@ -56,44 +58,26 @@ export class NewBoxerComponent implements OnInit {
   }
 
   onsubmit() {
-    console.log(this.formGroup.value)
-    const date = new Date('2021-01-01T00:00:00.000Z')
-    this.formGroup.value.birthDate = date.getTime()
-    this.boxerService.newImage(this.formGroup.value, this.image).subscribe({
-      next: (boxer) => console.log('parece q foi')
-    })
-    // if (this.formGroup.valid) {
-    //   this.boxerService.new(this.formGroup.value).subscribe({
-    //     next: (boxer) => {
-    //       this.messageService.add({severity: 'success', summary: 'Sucesso', detail: 'Boxeador cadastrado com sucesso.', life: 11000})
-    //       this.formGroup.reset();
-    //       this.image = null;
-    //       this.buttonEl.first.nativeElement.focus();
-    //     },
-    //     error: (err) => {
-    //       this.messageService.add({severity: 'error', summary: 'Erro', detail: 'Erro ao cadastrar boxeador.', life: 11000})
-    //     }
-    //   })
-    // } else {
-    //   this.markAllAsDirt()
-    // }
+    if (this.formGroup.valid) {
+      this.formGroup.value.birthDate = new Date(this.formGroup.value.birthDate)
+      this.boxerService.newBoxerWithImage(this.formGroup.value, this.image).subscribe({
+        next: (boxer) => {
+          this.messageService.add({severity: 'success', summary: 'Sucesso', detail: 'Boxeador cadastrado com sucesso.', life: 11000})
+          this.router.navigate(['/boxers'])
+      },
+        error: (err) => this.messageService.add({severity: 'error', summary: 'Erro', detail: 'Erro ao cadastrar boxeador.', life: 11000})
+      })
+    } else this.markAllAsDirt()
   }
 
   markAllAsDirt() {
-    // list all invalid fields
     Object.keys(this.formGroup.controls).forEach(field => {
       const control = this.formGroup.get(field);
-      console.log(control?.errors, field)
       if (control instanceof FormControl) {
         control.markAsDirty({onlySelf: true});
       }
     })
-    this.messageService.add({
-      severity: 'warn',
-      summary: 'Atenção',
-      detail: 'Preencha todos os campos destacados.',
-      life: 11000
-    })
+    this.messageService.add({severity: 'warn', summary: 'Atenção', detail: 'Preencha todos os campos destacados.', life: 11000})
   }
 
   onUpload(event: any) {

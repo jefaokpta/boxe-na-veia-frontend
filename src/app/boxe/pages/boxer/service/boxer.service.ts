@@ -18,13 +18,7 @@ export class BoxerService {
         first()
       )
   }
-  new(boxer: Boxer){
-    return this.http.post<Boxer>(this.api, boxer)
-      .pipe(
-        first()
-      )
-  }
-  newImage(boxer: Boxer, image: File){
+  newBoxerWithImage(boxer: Boxer, image: File){
     const formData = new FormData();
     formData.append('boxer', JSON.stringify(boxer));
     formData.append('file', image, image.name);
