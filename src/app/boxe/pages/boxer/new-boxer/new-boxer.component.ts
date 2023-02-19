@@ -57,6 +57,8 @@ export class NewBoxerComponent implements OnInit {
 
   onsubmit() {
     console.log(this.formGroup.value)
+    const date = new Date('2021-01-01T00:00:00.000Z')
+    this.formGroup.value.birthDate = date.getTime()
     this.boxerService.newImage(this.formGroup.value, this.image).subscribe({
       next: (boxer) => console.log('parece q foi')
     })

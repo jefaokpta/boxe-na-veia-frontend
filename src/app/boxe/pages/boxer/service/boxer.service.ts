@@ -26,8 +26,8 @@ export class BoxerService {
   }
   newImage(boxer: Boxer, image: File){
     const formData = new FormData();
-    formData.append('file', image, image.name);
     formData.append('boxer', JSON.stringify(boxer));
+    formData.append('file', image, image.name);
     return this.http.post(`${this.api}/upload`, formData)
       .pipe(
         first()
