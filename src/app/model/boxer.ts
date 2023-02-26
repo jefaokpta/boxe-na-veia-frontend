@@ -14,5 +14,4 @@ export interface Boxer {
   draws: number;
   noContests: number;
   kos: number;
-  image: string;
 }

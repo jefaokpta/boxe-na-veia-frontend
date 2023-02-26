@@ -26,7 +26,7 @@
         <ng-template pTemplate="body" let-boxer>
           <tr>
             <td>
-              <img src="http://localhost:8080/assets/imgs/boxers/{{boxer.image}}" class="jefao-image-table-rounded" />
+              <img (error)="imageFallback($event)" src="{{boxerImageBaseUrl}}/boxer-{{boxer.id}}.jpg" class="jefao-image-table-rounded" />
               <span class="image-text">{{boxer.name}}</span>
             </td>
             <td>{{boxer.division}}</td>

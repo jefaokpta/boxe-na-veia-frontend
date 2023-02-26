@@ -5,6 +5,7 @@ import {FormControl, FormGroup, NonNullableFormBuilder, Validators} from "@angul
 import {MessageService} from "primeng/api";
 import {BoxerService} from "../service/boxer.service";
 import {Router} from "@angular/router";
+import {formatDate} from "@angular/common";
 
 
 @Component({
@@ -34,7 +35,7 @@ export class NewBoxerComponent implements OnInit {
       country: new FormControl('br'),
       name: new FormControl('', [Validators.required]),
       birthName: new FormControl('', [Validators.required]),
-      alias: new FormControl('', [Validators.required]),
+      alias: new FormControl(''),
       birthDate: new FormControl('', [Validators.required]),
       division: new FormControl('Leve', [Validators.required]),
       weight: new FormControl(0, [Validators.required]),
@@ -59,8 +60,8 @@ export class NewBoxerComponent implements OnInit {
 
   onsubmit() {
     if (this.formGroup.valid) {
-      this.formGroup.value.birthDate = new Date(this.formGroup.value.birthDate)
-      this.boxerService.newBoxerWithImage(this.formGroup.value, this.image).subscribe({
+      this.formGroup.value.birthDate = this.dateFormat(this.formGroup.value.birthDate)
+      this.boxerService.newBoxer(this.formGroup.value, this.image).subscribe({
         next: (boxer) => {
           this.messageService.add({severity: 'success', summary: 'Sucesso', detail: 'Boxeador cadastrado com sucesso.', life: 11000})
           this.router.navigate(['/boxers'])
@@ -68,6 +69,12 @@ export class NewBoxerComponent implements OnInit {
         error: (err) => this.messageService.add({severity: 'error', summary: 'Erro', detail: 'Erro ao cadastrar boxeador.', life: 11000})
       })
     } else this.markAllAsDirt()
+  }
+
+  dateFormat(date: String) {
+    let dateArray = date.split('/');
+    //todo: tratar erro de conversao de data e lancar mensagem de erro
+    return new Date(`${dateArray[2]}-${dateArray[1]}-${dateArray[0]}`).toISOString()
   }
 
   markAllAsDirt() {
