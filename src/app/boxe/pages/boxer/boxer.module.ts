@@ -16,13 +16,15 @@ import {RippleModule} from "primeng/ripple";
 import {ToastModule} from "primeng/toast";
 import {MessageService} from "primeng/api";
 import { EditBoxerComponent } from './edit-boxer/edit-boxer.component';
+import { FormBoxerComponent } from './form-boxer/form-boxer.component';
 
 
 @NgModule({
   declarations: [
     BoxerComponent,
     NewBoxerComponent,
-    EditBoxerComponent
+    EditBoxerComponent,
+    FormBoxerComponent
   ],
   imports: [
     CommonModule,

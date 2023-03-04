@@ -25,15 +25,20 @@ export class BoxerService {
       )
   }
 
-  newBoxer(boxer: Boxer, image?: File){
-    if (!image) return this.http.post(this.api, boxer)
-      .pipe(
-        first()
-      )
+  submit(boxer: Boxer, image?: File, boxerId?: string) {
+    boxer.birthDate = this.dateFormat(boxer.birthDate);
     const formData = new FormData();
     formData.append('boxer', JSON.stringify(boxer));
-    formData.append('file', image, image.name);
-    return this.http.post(`${this.api}/upload`, formData)
+    if (image){
+      formData.append('file', image, image.name);
+    }
+    if (boxerId){
+      return this.http.put(`${this.api}/${boxerId}`, formData)
+        .pipe(
+          first()
+        )
+    }
+    return this.http.post(this.api, formData)
       .pipe(
         first()
       )
@@ -44,5 +49,10 @@ export class BoxerService {
       .pipe(
         first()
       )
+  }
+
+  private dateFormat(date: string): string {
+    let dateArray = date.split('/');
+    return new Date(`${dateArray[2]}-${dateArray[1]}-${dateArray[0]}T09:00:00`).toISOString();
   }
 }
