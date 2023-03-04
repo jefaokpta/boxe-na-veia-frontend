@@ -31,7 +31,6 @@ export class NewBoxerComponent implements OnInit {
   ) {
     this.formGroup = this.formBuilder.group({
       id: new FormControl(undefined),
-      image: new FormControl(undefined),
       country: new FormControl('br'),
       name: new FormControl('', [Validators.required]),
       birthName: new FormControl('', [Validators.required]),
@@ -61,20 +60,35 @@ export class NewBoxerComponent implements OnInit {
   onsubmit() {
     if (this.formGroup.valid) {
       this.formGroup.value.birthDate = this.dateFormat(this.formGroup.value.birthDate)
+      console.log(`Nascimento formatado ${this.formGroup.value.birthDate}`)
       this.boxerService.newBoxer(this.formGroup.value, this.image).subscribe({
         next: (boxer) => {
-          this.messageService.add({severity: 'success', summary: 'Sucesso', detail: 'Boxeador cadastrado com sucesso.', life: 11000})
-          this.router.navigate(['/boxers'])
+          this.router.navigate(['/boxers']).then(() => {
+            this.messageService.add({severity: 'success', summary: 'Sucesso', detail: 'Boxeador cadastrado com sucesso.', life: 11000})
+          })
       },
-        error: (err) => this.messageService.add({severity: 'error', summary: 'Erro', detail: 'Erro ao cadastrar boxeador.', life: 11000})
+        error: (err) => {
+          console.log(err.error.message)
+          if (err.error.message.includes('constraint')) {
+            this.messageService.add({severity: 'error', summary: 'Lutador já existe', detail: 'Existe um lutador com o mesmo nome.', life: 11000})
+          } else {
+            this.messageService.add({severity: 'error', summary: 'Erro', detail: 'Erro ao cadastrar boxeador.', life: 11000})
+          }
+        }
       })
     } else this.markAllAsDirt()
   }
 
   dateFormat(date: String) {
     let dateArray = date.split('/');
-    //todo: tratar erro de conversao de data e lancar mensagem de erro
-    return new Date(`${dateArray[2]}-${dateArray[1]}-${dateArray[0]}`).toISOString()
+    try {
+      console.log(`Nascimento atual ${date}`)
+      const bornDate = new Date(`${dateArray[2]}-${dateArray[1]}-${dateArray[0]}`);
+      return `${bornDate.getFullYear()}-${bornDate.getMonth() + 1}-${bornDate.getDate()}`
+    } catch (e) {
+      this.messageService.add({severity: 'error', summary: 'Data de nascimento inválida', detail: 'Verifique a data de nascimento', life: 11000})
+      throw new Error('Data de nascimento inválida')
+    }
   }
 
   markAllAsDirt() {
