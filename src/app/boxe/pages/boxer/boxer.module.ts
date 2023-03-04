@@ -15,12 +15,14 @@ import {FileUploadModule} from "primeng/fileupload";
 import {RippleModule} from "primeng/ripple";
 import {ToastModule} from "primeng/toast";
 import {MessageService} from "primeng/api";
+import { EditBoxerComponent } from './edit-boxer/edit-boxer.component';
 
 
 @NgModule({
   declarations: [
     BoxerComponent,
-    NewBoxerComponent
+    NewBoxerComponent,
+    EditBoxerComponent
   ],
   imports: [
     CommonModule,

@@ -3,7 +3,7 @@ export interface Boxer {
   name: string;
   birthName: string;
   alias: string;
-  birthDate: Date;
+  birthDate: string;
   division: string;
   country: string;
   weight: number;

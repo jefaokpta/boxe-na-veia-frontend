@@ -1,18 +1,17 @@
 import {Component, ElementRef, OnInit, QueryList, ViewChildren} from '@angular/core';
 import {Country} from "../../../../model/country";
-import {CountryService} from "../../../../service/country.service";
 import {FormControl, FormGroup, NonNullableFormBuilder, Validators} from "@angular/forms";
+import {CountryService} from "../../../../service/country.service";
 import {MessageService} from "primeng/api";
 import {BoxerService} from "../service/boxer.service";
-import {Router} from "@angular/router";
-
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
-  selector: 'app-new-boxer',
-  templateUrl: './new-boxer.component.html',
-  styleUrls: ['./new-boxer.component.scss']
+  selector: 'app-edit-boxer',
+  templateUrl: './edit-boxer.component.html',
+  styleUrls: ['./edit-boxer.component.scss']
 })
-export class NewBoxerComponent implements OnInit {
+export class EditBoxerComponent implements OnInit{
 
   @ViewChildren('buttonEl') buttonEl!: QueryList<ElementRef>;
   image: any;
@@ -27,7 +26,8 @@ export class NewBoxerComponent implements OnInit {
               private formBuilder: NonNullableFormBuilder,
               private messageService: MessageService,
               private boxerService: BoxerService,
-              private router: Router
+              private router: Router,
+              private activatedRoute: ActivatedRoute
   ) {
     this.formGroup = this.formBuilder.group({
       id: new FormControl(undefined),
@@ -36,8 +36,8 @@ export class NewBoxerComponent implements OnInit {
       birthName: new FormControl('', [Validators.required]),
       alias: new FormControl(''),
       birthDate: new FormControl('', [Validators.required]),
-      division: new FormControl('Leve', [Validators.required]),
-      gender: new FormControl('M', [Validators.required]),
+      division: new FormControl('', [Validators.required]),
+      gender: new FormControl('', [Validators.required]),
       weight: new FormControl(0, [Validators.required]),
       height: new FormControl(0.0, [Validators.required]),
       reach: new FormControl(0.0, [Validators.required]),
@@ -52,13 +52,14 @@ export class NewBoxerComponent implements OnInit {
   ngOnInit(): void {
     this.countryService.getCountries().subscribe({
       next: (countries) => {
-        this.selectedCountry = countries[0];
         this.countries = countries
       }
     })
-    this.formGroup.valueChanges.subscribe({
-      next: (value) => {
-        this.selectedCountry = this.countries.find((country) => country.code.toLowerCase() === value.country.toLowerCase())
+    this.boxerService.getBoxer(this.activatedRoute.snapshot.params['id']).subscribe({
+      next: (boxer) => {
+        boxer.birthDate = new Date(boxer.birthDate).toLocaleDateString('pt-BR')
+        this.formGroup.setValue(boxer)
+        this.selectedCountry = this.countries.find((country) => country.code === boxer.country.toUpperCase())
       }
     })
   }
@@ -70,7 +71,7 @@ export class NewBoxerComponent implements OnInit {
         next: (boxer) => {
           this.messageService.add({severity: 'success', summary: 'Sucesso', detail: 'Boxeador cadastrado com sucesso.', life: 11000})
           this.router.navigate(['/boxers'])
-      },
+        },
         error: (err) => {
           console.log(err.error.message)
           if (err.error.message.includes('constraint')) {
@@ -85,7 +86,15 @@ export class NewBoxerComponent implements OnInit {
 
   dateFormat(date: string) {
     let dateArray = date.split('/');
-    return new Date(`${dateArray[2]}-${dateArray[1]}-${dateArray[0]}T09:00:00`)
+    try {
+      const bornDate = new Date(`${dateArray[2]}-${dateArray[1]}-${dateArray[0]}`);
+      const day = (bornDate.getDate() < 10) ? `0${bornDate.getDate()}` : bornDate.getDate()
+      const month = (bornDate.getMonth() < 10) ? `0${bornDate.getMonth() + 1}` : bornDate.getMonth() + 1
+      return `${bornDate.getFullYear()}-${month}-${day}`
+    } catch (e) {
+      this.messageService.add({severity: 'error', summary: 'Data de nascimento inválida', detail: 'Verifique a data de nascimento', life: 11000})
+      throw new Error('Data de nascimento inválida')
+    }
   }
 
   markAllAsDirt() {
@@ -112,5 +121,10 @@ export class NewBoxerComponent implements OnInit {
 
   removeImage() {
     this.image = null;
+  }
+
+  updateCountry($event: any) {
+    this.selectedCountry = $event.value;
+    this.formGroup.value.country = this.selectedCountry!!.code.toLowerCase();
   }
 }

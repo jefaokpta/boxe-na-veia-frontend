@@ -1,5 +1,5 @@
 <div class="card">
-  <h1 style="margin-bottom: 24px">Novo Lutador</h1>
+  <h1 style="margin-bottom: 24px">Editar Lutador</h1>
   <form [formGroup]="formGroup" (ngSubmit)="onsubmit()" >
     <div class="p-fluid grid">
       <div class="grid col-8">
@@ -67,8 +67,8 @@
       </div>
       <div class="field col-12 lg:col-3">
           <span class="p-float-label">
-            <p-dropdown id="country" [options]="countries" formControlName="country" optionLabel="name"
-                        [filter]="true" filterBy="name" optionValue="code">
+            <p-dropdown id="country" [options]="countries" (onChange)="updateCountry($event)" optionLabel="name"
+                        [filter]="true" filterBy="name">
             <ng-template pTemplate="selectedItem">
               <div class="country-item country-item-value" *ngIf="selectedCountry">
                 <img src="assets/demo/images/flag/flag_placeholder.png"
