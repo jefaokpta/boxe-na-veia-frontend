@@ -107,6 +107,7 @@ export class FormBoxerComponent implements OnInit{
   }
 
   onUpload(event: any) {
+    this.boxerImagePreview = undefined
     let file = event.files[0];
     file.objectURL = file.objectURL ? file.objectURL : this.objectURL;
 
@@ -120,5 +121,9 @@ export class FormBoxerComponent implements OnInit{
 
   removeImage() {
     this.image = null;
+  }
+
+  imageFallback() {
+    this.boxerImagePreview = undefined
   }
 }
