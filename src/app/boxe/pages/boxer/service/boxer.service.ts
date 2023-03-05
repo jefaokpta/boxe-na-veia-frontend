@@ -52,7 +52,8 @@ export class BoxerService {
   }
 
   private dateFormat(date: string): string {
-    let dateArray = date.split('/');
+    console.log(date);
+    let dateArray = date.split('T')[0].split('/');
     return new Date(`${dateArray[2]}-${dateArray[1]}-${dateArray[0]}T09:00:00`).toISOString();
   }
 }

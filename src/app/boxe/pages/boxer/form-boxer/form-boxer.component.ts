@@ -82,7 +82,7 @@ export class FormBoxerComponent implements OnInit{
       this.boxerService.submit(this.formGroup.value, this.image, this.boxerId).subscribe({
         next: (boxer) => {
           this.messageService.add({severity: 'success', summary: 'Sucesso', detail: 'Boxeador cadastrado com sucesso.', life: 11000})
-          this.router.navigate(['/boxers'])
+          this.router.navigate(['admin/boxers'])
         },
         error: (err) => {
           console.log(err.error.message)

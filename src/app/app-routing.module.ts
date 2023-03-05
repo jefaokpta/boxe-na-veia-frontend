@@ -3,7 +3,8 @@ import { RouterModule, Routes } from '@angular/router';
 import {AppLayoutComponent} from "./layout/app.layout.component";
 
 const routes: Routes = [
-  { path: '', component: AppLayoutComponent,
+  { path: '', loadChildren: () => import('./boxe/pages/landing/landing.module').then(m => m.LandingModule) },
+  { path: 'admin', component: AppLayoutComponent,
     children: [
       { path: '', loadChildren: () => import('./boxe/pages/home/home.module').then(m => m.HomeModule) },
       { path: 'boxers', loadChildren: () => import('./boxe/pages/boxer/boxer.module').then(m => m.BoxerModule) },
@@ -13,6 +14,7 @@ const routes: Routes = [
     ]
   },
   { path: 'auth', loadChildren: () => import('./boxe/components/auth/auth.module').then(m => m.AuthModule) },
+  { path: '**', redirectTo: '' }
 ];
 
 @NgModule({
