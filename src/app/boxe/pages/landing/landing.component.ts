@@ -8,5 +8,6 @@ import {Router} from "@angular/router";
 })
 export class LandingComponent {
 
+  display = false;
   constructor(public router: Router) {}
 }

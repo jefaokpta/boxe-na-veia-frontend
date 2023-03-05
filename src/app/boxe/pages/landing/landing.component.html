@@ -43,12 +43,17 @@
       <div class="mx-4 md:mx-8 mt-0 md:mt-4">
         <h1 class="text-6xl font-bold text-gray-900 line-height-2">Projeto Boxe na Veia</h1>
         <p class="font-normal text-2xl line-height-3 md:mt-3 text-gray-700">Bem vindo ao Boxe na Veia Records onde voçe fica por dentro de todos eventos de boxe! </p>
-        <button pButton pRipple type="button" label="Conheça nosso trabalho" icon="pi pi-play" iconPos="right" class="p-button-rounded text-xl border-none mt-3 bg-blue-500 font-normal line-height-3 px-3 text-white"></button>
+<!--        <button pButton pRipple type="button" label="Conheça nosso trabalho" icon="pi pi-play" iconPos="right" class="p-button-rounded text-xl border-none mt-3 bg-blue-500 font-normal line-height-3 px-3 text-white"></button>-->
+        <button (click)="display=true" pButton class="p-button-rounded text-xl" iconPos="right" icon="pi pi-play" label="Conheça nosso trabalho"></button>
       </div>
       <div class="flex justify-content-center md:justify-content-end">
         <img src="assets/imgs/boxe-na-veia.png" alt="Hero Image" class="w-9 md:w-auto border-round">
       </div>
     </div>
+
+    <p-dialog [(visible)]="display" [modal]="true" showEffect="fade" >
+      <iframe width="600" height="400" src="https://www.youtube.com/embed/wMlswpDOyNU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+    </p-dialog>
 
     <div id="features" class="py-4 px-4 lg:px-8 mt-5 mx-0 lg:mx-8">
       <div class="grid justify-content-center">

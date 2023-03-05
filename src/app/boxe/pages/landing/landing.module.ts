@@ -7,6 +7,7 @@ import {DividerModule} from "primeng/divider";
 import {StyleClassModule} from "primeng/styleclass";
 import {ButtonModule} from "primeng/button";
 import {RippleModule} from "primeng/ripple";
+import {DialogModule} from "primeng/dialog";
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import {RippleModule} from "primeng/ripple";
     DividerModule,
     StyleClassModule,
     ButtonModule,
-    RippleModule
+    RippleModule,
+    DialogModule
   ]
 })
 export class LandingModule { }
