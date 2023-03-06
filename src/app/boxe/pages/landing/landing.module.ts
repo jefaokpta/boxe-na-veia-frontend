@@ -9,6 +9,7 @@ import {ButtonModule} from "primeng/button";
 import {RippleModule} from "primeng/ripple";
 import {DialogModule} from "primeng/dialog";
 import {CardModule} from "primeng/card";
+import {CarouselModule} from "primeng/carousel";
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import {CardModule} from "primeng/card";
         ButtonModule,
         RippleModule,
         DialogModule,
-        CardModule
+        CardModule,
+        CarouselModule
     ]
 })
 export class LandingModule { }

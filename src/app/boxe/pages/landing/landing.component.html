@@ -164,6 +164,14 @@
           <h2 class="text-900 font-normal mb-2">Parceiros</h2>
           <span class="text-600 text-2xl">Parceiros que acreditam no nosso trabalho</span>
         </div>
+
+        <p-carousel [value]="partners" [numVisible]="3" [responsiveOptions]="responsiveOptions" [autoplayInterval]="5000">
+          <ng-template let-partner pTemplate="item">
+            <div class="text-center">
+              <img src="assets/imgs/partners/{{partner}}" width="30%" alt="">
+            </div>
+          </ng-template>
+        </p-carousel>
       </div>
     </div>
 
