@@ -8,20 +8,22 @@ import {StyleClassModule} from "primeng/styleclass";
 import {ButtonModule} from "primeng/button";
 import {RippleModule} from "primeng/ripple";
 import {DialogModule} from "primeng/dialog";
+import {CardModule} from "primeng/card";
 
 
 @NgModule({
   declarations: [
     LandingComponent
   ],
-  imports: [
-    CommonModule,
-    LandingRoutingModule,
-    DividerModule,
-    StyleClassModule,
-    ButtonModule,
-    RippleModule,
-    DialogModule
-  ]
+    imports: [
+        CommonModule,
+        LandingRoutingModule,
+        DividerModule,
+        StyleClassModule,
+        ButtonModule,
+        RippleModule,
+        DialogModule,
+        CardModule
+    ]
 })
 export class LandingModule { }
