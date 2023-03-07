@@ -34,7 +34,6 @@
       <div class="mx-4 md:mx-8 mt-0 md:mt-4">
         <h1 class="text-6xl font-bold text-gray-900 line-height-2">Boxe na Veia Records</h1>
         <p class="font-normal text-2xl line-height-3 md:mt-3 text-gray-700">Bem vindo ao Boxe na Veia Records onde voçê fica por dentro de todos eventos de boxe! </p>
-<!--        <button pButton pRipple type="button" label="Conheça nosso trabalho" icon="pi pi-play" iconPos="right" class="p-button-rounded text-xl border-none mt-3 bg-blue-500 font-normal line-height-3 px-3 text-white"></button>-->
         <button (click)="display=true" pButton class="p-button-rounded text-xl" iconPos="right" icon="pi pi-play" label="Conheça nosso trabalho"></button>
       </div>
       <div class="flex justify-content-center md:justify-content-end">
@@ -168,44 +167,47 @@
 
     <div id="contacts" class="py-4 px-4 mx-0 mt-8 lg:mx-8">
       <div class="grid justify-content-between">
-        <div class="col-12 md:col-2" style="margin-top:-1.5rem;">
-          <a (click)="router.navigate(['/pages/landing'], {fragment: 'home'})" class="flex flex-wrap align-items-center justify-content-center md:justify-content-start md:mb-0 mb-3 cursor-pointer">
-<!--            <img src="assets/layout/images/{{layoutService.config.colorScheme === 'light' ? 'logo-dark' : 'logo-white'}}.svg" alt="footer sections" width="50" height="50" class="mr-2">-->
+        <div class="col-12 lg:col-3 text-center">
+          <a href="#hero">
             <h4 class="font-medium text-3xl text-900">Boxe na Veia Records</h4>
           </a>
+          <div class="boxer-social-medias">
+            <i class="pi pi-instagram" style="font-size: 1.5em"></i>
+            <i class="pi pi-facebook" style="font-size: 1.5em"></i>
+            <i class="pi pi-twitter" style="font-size: 1.5em"></i>
+            <i class="pi pi-youtube" style="font-size: 1.5em"></i>
+          </div>
         </div>
 
-        <div class="col-12 md:col-10 lg:col-7">
-          <div class="grid text-center md:text-left">
+        <div class="col-12 lg:col-9">
+          <div class="grid text-center justify-content-end">
             <div class="col-12 md:col-3">
-              <h4 class="font-medium text-2xl line-height-3 mb-3 text-900">Company</h4>
-              <a class="line-height-3 text-xl block cursor-pointer mb-2 text-700">About Us</a>
-              <a class="line-height-3 text-xl block cursor-pointer mb-2 text-700">News</a>
-              <a class="line-height-3 text-xl block cursor-pointer mb-2 text-700">Investor Relations</a>
-              <a class="line-height-3 text-xl block cursor-pointer mb-2 text-700">Careers</a>
-              <a class="line-height-3 text-xl block cursor-pointer text-700">Media Kit</a>
+              <h4 class="font-medium text-2xl line-height-3 mb-3 text-900">Nossos Projetos</h4>
+              <a class="line-height-3 text-xl block cursor-pointer mb-2 text-700">Boxe para Sempre</a>
+              <a class="line-height-3 text-xl block cursor-pointer mb-2 text-700">Boxe SCS</a>
+              <a class="line-height-3 text-xl block cursor-pointer mb-2 text-700">Central do Boxe</a>
             </div>
 
-            <div class="col-12 md:col-3 mt-4 md:mt-0">
-              <h4 class="font-medium text-2xl line-height-3 mb-3 text-900">Resources</h4>
-              <a class="line-height-3 text-xl block cursor-pointer mb-2 text-700">Get Started</a>
-              <a class="line-height-3 text-xl block cursor-pointer mb-2 text-700">Learn</a>
-              <a class="line-height-3 text-xl block cursor-pointer text-700">Case Studies</a>
+            <div class="col-12 lg:col-3 mt-4 md:mt-0">
+              <h4 class="font-medium text-2xl line-height-3 mb-3 text-900">Links Úteis</h4>
+              <a class="line-height-3 text-xl block cursor-pointer mb-2 text-700">Area de Administrador</a>
             </div>
 
-            <div class="col-12 md:col-3 mt-4 md:mt-0">
-              <h4 class="font-medium text-2xl line-height-3 mb-3 text-900">Community</h4>
-              <a class="line-height-3 text-xl block cursor-pointer mb-2 text-700">Discord</a>
-              <a class="line-height-3 text-xl block cursor-pointer mb-2 text-700">Events<img src="assets/demo/images/landing/new-badge.svg" class="ml-2"/></a>
-              <a class="line-height-3 text-xl block cursor-pointer mb-2 text-700">FAQ</a>
-              <a class="line-height-3 text-xl block cursor-pointer text-700">Blog</a>
-            </div>
-
-            <div class="col-12 md:col-3 mt-4 md:mt-0">
-              <h4 class="font-medium text-2xl line-height-3 mb-3 text-900">Legal</h4>
-              <a class="line-height-3 text-xl block cursor-pointer mb-2 text-700">Brand Policy</a>
-              <a class="line-height-3 text-xl block cursor-pointer mb-2 text-700">Privacy Policy</a>
-              <a class="line-height-3 text-xl block cursor-pointer text-700">Terms of Service</a>
+            <div class="col-12 lg:col-4 mt-4 md:mt-0">
+              <h4 class="font-medium text-2xl line-height-3 mb-3 text-900">Contatos</h4>
+              <span class="line-height-3 text-xl block cursor-pointer mb-2 text-700">
+                <p><i class="pi pi-phone"></i> 11 99999-9999</p>
+              </span>
+              <span class="line-height-3 text-xl block cursor-pointer mb-2 text-700">
+                <p><i class="pi pi-envelope"></i> info@boxenaveia.com.br</p>
+              </span>
+              <span class="line-height-3 text-xl block cursor-pointer mb-2 text-700">
+                <p>
+                  <i class="pi pi-map-marker"></i> CTE Mario Chekin<br>
+                  Av. Estrada das Lágrimas, 1234<br>
+                  São Caetano do Sul
+                </p>
+              </span>
             </div>
           </div>
         </div>
