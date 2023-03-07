@@ -9,17 +9,18 @@ import {environment} from "../../../../../environments/environment";
 })
 export class BoxerService {
 
-  private api = environment.api + '/boxers'
+  private urlBase = environment.api + '/boxers'
+
   constructor(private http: HttpClient) { }
 
   list(){
-    return this.http.get<Boxer[]>(this.api)
+    return this.http.get<Boxer[]>(this.urlBase)
       .pipe(
         first()
       )
   }
   getBoxer(id: string) {
-    return this.http.get<Boxer>(`${this.api}/${id}`)
+    return this.http.get<Boxer>(`${this.urlBase}/${id}`)
       .pipe(
         first()
       )
@@ -33,19 +34,19 @@ export class BoxerService {
       formData.append('file', image, image.name);
     }
     if (boxerId){
-      return this.http.put(`${this.api}/${boxerId}`, formData)
+      return this.http.put(`${this.urlBase}/${boxerId}`, formData)
         .pipe(
           first()
         )
     }
-    return this.http.post(this.api, formData)
+    return this.http.post(this.urlBase, formData)
       .pipe(
         first()
       )
   }
 
   delete(id: number) {
-    return this.http.delete(`${this.api}/${id}`)
+    return this.http.delete(`${this.urlBase}/${id}`)
       .pipe(
         first()
       )
