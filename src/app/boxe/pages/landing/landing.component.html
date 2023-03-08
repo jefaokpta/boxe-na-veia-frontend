@@ -91,16 +91,16 @@
     </div>
 
     <div id="boxers" class="py-4 px-4 lg:px-8 mt-5 mx-0 lg:mx-8">
-      <div class="grid justify-content-center">
-        <div class="col-12 text-center mt-8 mb-4">
+      <div class="justify-content-center text-center">
+        <div class="text-center mt-8 mb-4">
           <p-divider align="center" ><h2 class="text-900 font-normal mb-2">Lutadores</h2></p-divider>
           <span class="text-600 text-xl">Os melhores estao aqui!</span>
         </div>
 
           <div class="grid">
-            <p-card *ngFor="let boxer of boxers" class="col-12 lg:col-3 text-center">
-              <img src="{{boxerImageBaseUrl}}/boxer-{{boxer.id}}.jpg" alt="Card Image" class="card-img-top border-round" width="100%" height="70%">
-              <h2 class="text-900 font-normal mb-2">{{boxer.name}}</h2>
+            <p-card *ngFor="let boxer of boxers" class="col-12 md:col-6 lg:col-3 text-center">
+              <img src="{{boxerImageBaseUrl}}/boxer-{{boxer.id}}.jpg" (error)="imageFallback($event)" alt="Card Image" class="card-img-top border-round" style="max-width: 200px" width="100%" height="200" >
+              <h2 class="text-900 font-normal mb-2 text-2xl">{{boxer.name}}</h2>
               <p class="card-text">{{boxer.division}}</p>
               <div class="boxer-social-medias">
                 <i class="pi pi-instagram" style="font-size: 1.5em"></i>

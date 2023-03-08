@@ -40,4 +40,9 @@ export class LandingComponent implements OnInit{
   ngOnInit(): void {
     this.landingService.getAllBoxers().subscribe(boxers => this.boxers = boxers)
   }
+
+  imageFallback(event: ErrorEvent) {
+    const imageElement = event.target as HTMLImageElement;
+    imageElement.src = 'assets/imgs/boxers/boxer-default.png';
+  }
 }

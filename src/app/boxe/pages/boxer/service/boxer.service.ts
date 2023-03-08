@@ -3,6 +3,7 @@ import {HttpClient} from "@angular/common/http";
 import {first} from "rxjs";
 import {Boxer} from "../../../../model/boxer";
 import {environment} from "../../../../../environments/environment";
+import * as moment from 'moment';
 
 @Injectable({
   providedIn: 'root'
@@ -27,7 +28,7 @@ export class BoxerService {
   }
 
   submit(boxer: Boxer, image?: File, boxerId?: string) {
-    boxer.birthDate = this.dateFormat(boxer.birthDate);
+    boxer.birthDate = moment(boxer.birthDate, 'DD-MM-YYYY').format('YYYY-MM-DDT20:00:00.000Z');
     const formData = new FormData();
     formData.append('boxer', JSON.stringify(boxer));
     if (image){
@@ -50,11 +51,5 @@ export class BoxerService {
       .pipe(
         first()
       )
-  }
-
-  private dateFormat(date: string): string {
-    console.log(date);
-    let dateArray = date.split('T')[0].split('/');
-    return new Date(`${dateArray[2]}-${dateArray[1]}-${dateArray[0]}T09:00:00`).toISOString();
   }
 }

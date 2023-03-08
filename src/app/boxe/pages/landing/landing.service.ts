@@ -14,7 +14,7 @@ export class LandingService {
   constructor(private httpClient: HttpClient) { }
 
   getAllBoxers() {
-    return this.httpClient.get<Boxer[]>(this.urlBase)
+    return this.httpClient.get<Boxer[]>(`${this.urlBase}/list8`)
       .pipe(
         first()
       )

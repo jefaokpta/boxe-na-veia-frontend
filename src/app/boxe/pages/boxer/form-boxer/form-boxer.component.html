@@ -21,8 +21,8 @@
       </div>
     </div>
     <div class="col-4">
-      <img [src]="boxerImagePreview" height="50%" width="100%" class="border-round" [hidden]="!boxerImagePreview" (error)="imageFallback()"  alt="">
-      <p-fileUpload #fileUploader name="demo[]" url="./upload.php" (onUpload)="onUpload($event)" [customUpload]="true" [multiple]="true" (onSelect)="onUpload($event)" accept="image/*" [showUploadButton]="false" [showCancelButton]="false" [auto]="true" styleClass="border-1 surface-border surface-card p-0 border-round mb-4">
+      <img [src]="boxerImagePreview" height="200" width="100%" style="max-width: 200px" class="border-round" [hidden]="!boxerImagePreview" (error)="imageFallback()"  alt="">
+      <p-fileUpload #fileUploader (onUpload)="onUpload($event)" [customUpload]="true" [multiple]="true" (onSelect)="onUpload($event)" accept="image/*" [showUploadButton]="false" [showCancelButton]="false" [auto]="true" styleClass="border-1 surface-border surface-card p-0 border-round mb-4">
         <ng-template pTemplate="content">
           <div class="border-round">
             <div *ngIf="!image" class="flex flex-column w-full h-full justify-content-center align-items-center cursor-pointer" (click)="fileUploader.advancedFileInput.nativeElement.click()">
