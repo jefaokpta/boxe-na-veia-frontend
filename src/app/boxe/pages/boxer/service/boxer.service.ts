@@ -3,7 +3,7 @@ import {HttpClient} from "@angular/common/http";
 import {first} from "rxjs";
 import {Boxer} from "../../../../model/boxer";
 import {environment} from "../../../../../environments/environment";
-import * as moment from 'moment';
+import {formatDate} from "@angular/common";
 
 @Injectable({
   providedIn: 'root'
@@ -27,8 +27,13 @@ export class BoxerService {
       )
   }
 
+  private myFormatDate(date: string) {
+    date = date.split('/').reverse().join('-');
+    return formatDate(date, 'yyyy-MM-ddT20:00:00', 'en-US');
+  }
+
   submit(boxer: Boxer, image?: File, boxerId?: string) {
-    boxer.birthDate = moment(boxer.birthDate, 'DD-MM-YYYY').format('YYYY-MM-DDT20:00:00.000Z');
+    boxer.birthDate = this.myFormatDate(boxer.birthDate);
     const formData = new FormData();
     formData.append('boxer', JSON.stringify(boxer));
     if (image){
