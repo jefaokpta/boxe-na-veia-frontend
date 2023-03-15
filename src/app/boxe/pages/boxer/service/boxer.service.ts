@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {first} from "rxjs";
 import {Boxer} from "../../../../model/boxer";
-import {environment} from "../../../../../environments/environment";
+import {environment} from "../../../../../environment/environment";
 import {formatDate} from "@angular/common";
 
 @Injectable({

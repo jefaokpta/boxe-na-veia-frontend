@@ -5,7 +5,7 @@ import {CountryService} from "../../../../service/country.service";
 import {MessageService} from "primeng/api";
 import {BoxerService} from "../service/boxer.service";
 import {ActivatedRoute, Router} from "@angular/router";
-import {environment} from "../../../../../environments/environment";
+import {environment} from "../../../../../environment/environment";
 
 @Component({
   selector: 'app-form-boxer',

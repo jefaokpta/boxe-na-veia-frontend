@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {finalize} from "rxjs";
 import {BoxerService} from "./service/boxer.service";
 import {Boxer} from "../../../model/boxer";
-import {environment} from "../../../../environments/environment";
+import {environment} from "../../../../environment/environment";
 import {MessageService} from "primeng/api";
 
 @Component({

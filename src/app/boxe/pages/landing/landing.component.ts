@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
 import {Boxer} from "../../../model/boxer";
 import {LandingService} from "./landing.service";
-import {environment} from "../../../../environments/environment";
+import {environment} from "../../../../../environments/environment";
 
 @Component({
   selector: 'app-landing',
